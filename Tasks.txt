@@ -1,0 +1,75 @@
+Projekt podsumowujący CarShop.
+Projekt najlepiej wykonać grupowo, sugerowany rozmiar grupy- 3 osoby.
+
+Jedna z osób w grupie powinna utworzyć repozytorium na GitHubie i dodać resztę 
+osób jako kontrybutorzy projektu- wtedy wszyscy pracują na jednej bazie kodu.
+
+Przy pracy zespołowej należy pamiętać o poprawnym korzystaniu z systemu git, 
+szczegolnie biorąc pod uwagę pracę na różnych gałęziach. W przypadku 
+konieczności odświeżenia tej wiedzy zachęcam do przejrzenia materiałów 
+dotyczących systemu kontroli wersji GIT.
+
+Zakres prac do wykonania
+
+Celem projektu jest przygotowanie aplikacji pozwalającej na skonfigurowanie 
+zamówień samochodu. 
+
+1. Należy wykorzystać json-server do utworzenia prostego API do przechowywania 
+danych:
+    a. Należy stworzyć kolekcję reprezentującą poszczególne kategorie kreatora,
+    np:
+        i. name: string, np. 'Podstawowe',
+        ii. identifier: string, np. 'basic',
+        iii. position: number, np. 1 - oznacza kolejnośc kategorii w kreatorze,
+        iv. id: string - automatycznie wygenerowany
+    b. Należy stworzyć kolekcję reprezentującą ceny wszystkich opcji dostępnych 
+       w kreatorze - przykładowo:
+       i. name: string, np. 'Otwierany dach',
+       ii. price: number, np. 1000,
+       iii. id: string - automatycznie wygenerowany przez json- server,
+       iv. partID: string, unikalny identyfikator części do jej identyfikacji 
+        w późniejszym czasie, np. 'opening-roof'
+       v. category: string, relacja do kategorii części
+    c. Należy stworzyć kolekcję reprezentującą wszystki zamówienia:
+       i. firstName: string, imię klienta,
+       ii. lastName: string, nazwisko klienta,
+       iii. email: string, adres email klienta,
+       iv. value: number. koszt zamównienia,
+       v. details: string, zawartośc zamówienia
+
+2. Użytkownik ma mieć możliwość dodawania kategorii oraz części do wybranej 
+kategorii, usunięcie części oraz usunięcie całej kategorii.
+3. Użytkownik widzi listę wszystkich kategorii i może prejśc do listy części z 
+danej kategorii.
+4. Następnie pod inną ścieżką - np. /creator/ użytkownik dostaje dostęp do 
+kreatora- każda kategoria części powinna być dostępna pod osobną ścieżką, czyli
+wchodząc na ścieżkę główną użytkowni zostaje przekierowany np. do 
+category/basic, po wypełnieniu tego kroku może przejśc do kolejnego kroku aż 
+przejdzie przez wszystkie kategorie - zgodnie z ich sprecyzowaną kolejnością.
+Użytkownik może cofnąć się do poprzedniego kroku.
+5. Na każdej stronie kreatora użytkownik moze wybrać dowolną część z kategorii-
+ilośc części do wyboru na danym kroku jest nielimitowana, ale użytkownik musi 
+wybrać przynajmniej jedną z części z kategorii.
+6. Konfiguracja użytkownika jest na bieżąco przetrzymywana w stanie globalnym 
+aplikacji.
+7. Należy stworzyć komponent, który na każdym kroku będzie pokazywać aktualną 
+wartośc zamówienia.
+8. Ostatnim krokiem kreatora jest formularz służący do podania danych osobowych- 
+imię, nazwisko i adres email. W tym miejscu użytkownik widzi również 
+podsumowanie swojego zamówienia.
+9. Konfiguracja zamównienia powinna być na bieżąco zachowywana w local storage,
+tak żeby po odświeżeniu okna użytkownik nie musiał wypełniać wszystkiego od 
+początku- tutaj nie trzeba użytkownika przekierowywać do danego kroku kreatora. 
+10. Zatwierdzenie ostatniego kroku powoduje zapisanie danych użytkownika z 
+łącznym kosztem zamówienia oraz listą części (w postaci ciągu znaków np. 
+'otwierany dach, podwójny wydech, skórzana tapicerka') w bazie danych.
+11. Pod osobną ścieżką użytkownik widzi listę wszystkich konfiguracji z danymi
+użytkownika, listą części oraz wartością zamówienia.
+12. Należy wykorzystać Material UI (lub inną podobną bibliotekę) do utworzenia 
+interfejsu aplikacji.
+13. Aplikacja powinna wykorzystywać react-query do optymalnego zarządzania 
+danymi oraz fetch do pobierania danych.
+14. Jako stan globalny należy wykorzystać redux-toolkit, albo zustand(zustand)
+15. Aplikacja powinna działać dobrze z włączonym StrictMode.
+16. Należy skonfigurować linter oraz husky w celu automatycznego formatowania 
+kodu zgodnie z w zespole regułami.
