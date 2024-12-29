@@ -1,12 +1,14 @@
 import { createFileRoute, Outlet } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/basic')({
-  component: RouteComponent,
-})
-
-function RouteComponent() {
+const RouteComponent = () => {
+  
   return <>
     {/* <div>Hello "/basic"!</div> */}
     <Outlet />
   </>
 }
+
+
+export const Route = createFileRoute('/basic')({
+  component: RouteComponent,
+});

@@ -2,11 +2,9 @@ import * as React from 'react'
 import { Link, Outlet, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/router-devtools'
 
-export const Route = createRootRoute({
-  component: RootComponent,
-})
 
-function RootComponent() {
+const RootComponent = () => {
+  
   return (
     <>
       <div className="p-2 flex gap-2 text-lg">
@@ -24,7 +22,7 @@ function RootComponent() {
           activeProps={{
             className: 'font-bold',
           }}
-        >
+          >
           About
         </Link>
         <Link
@@ -42,3 +40,7 @@ function RootComponent() {
     </>
   )
 }
+
+export const Route = createRootRoute({
+  component: RootComponent,
+})
