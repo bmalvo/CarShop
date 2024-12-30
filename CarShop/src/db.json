@@ -1,0 +1,101 @@
+{
+    "categories": [
+{
+    "name": "body-type",
+    "identifier": "body",
+    "position": 1,
+    "id": "1",
+    "parts": [
+        {
+            "id": "11",
+            "name": "hatchback",
+            "price": 120000,
+            "partID": "body-hatchback",
+            "category": "body-type"
+        },
+        {
+            "id": "12",
+            "name": "coupe",
+            "price": 150000,
+            "partID": "body-coupe",
+            "category": "body-type"
+        },
+        {
+            "id": "13",
+            "name": "pickup",
+            "price": 190000,
+            "partID": "body-pickup",
+            "category": "body-type"
+        }
+    ]
+},
+
+    {
+    "name": "drive",
+    "identifier": "drive",
+    "position": 2,
+    "id": "2",
+    "parts": [
+        {
+            "id": "21",
+            "name": "Front-Wheel-Drive",
+            "price": 30000,
+            "partID": "drive-FWD",
+            "category": "drive"
+        },
+        {
+            "id": "22",
+            "name": "Four-Wheel-Drive",
+            "price": 70000,
+            "partID": "drive-4WD",
+            "category": "drive"
+        },
+        {
+            "id": "23",
+            "name": "All-Wheel-Drive",
+            "price": 190000,
+            "partID": "drive-AWD",
+            "category": "drive"
+        }
+    ]
+    },
+    {
+        "name": "paint",
+    "identifier": "paint",
+    "position": 3,
+    "id": "3",
+    "parts": [
+        {
+            "id": "31",
+            "name": "solid",
+            "price": 15000,
+            "partID": "paint-solid",
+            "category": "paint"
+        },
+        {
+            "id": "32",
+            "name": "metallic",
+            "price": 30000,
+            "partID": "paint-metallic",
+            "category": "paint"
+        },
+        {
+            "id": "33",
+            "name": "matte",
+            "price": 60000,
+            "partID": "paint-matte",
+            "category": "paint"
+        }
+    ]
+    }
+    ],
+    "orders": [
+        {
+            "firstName": "Jan",
+            "lastName": "Kowalski",
+            "email": "jankowalski@wp.pl",
+            "value": 1000000,
+            "details": ["coupe", "drive-AWD", "paint-solid"]
+        }
+    ]
+}
