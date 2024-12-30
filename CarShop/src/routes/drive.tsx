@@ -4,9 +4,12 @@ import { usePersonalData } from '../store/usePersonalData';
 import { useShallow } from 'zustand/shallow';
 import { FormEvent } from 'react';
 import { PageHeader } from '../components/PageHeader';
+import { useOrderAccess } from '../hooks/useOrderAccess';
 
 
 const RouteComponent = () => {
+
+  useOrderAccess('drive');
   const { driveType, setDriveType } = usePersonalData(useShallow(state => ({ driveType: state.driveType, setDriveType: state.setDriveType })));
 
   const navigate = useNavigate();

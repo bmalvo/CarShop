@@ -11,7 +11,7 @@ const RouteComponent = () => {
     useEffect(() => {
 
         placeOrder();
-    },[])
+    },)
 
     return <>
         <PageHeader>Order complete!</PageHeader>

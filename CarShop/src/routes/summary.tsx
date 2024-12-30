@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { PageHeader } from '../components/PageHeader'
 import { useInput } from '../hooks/useInput'
 import { FormEvent } from 'react';
@@ -12,6 +12,7 @@ const RouteComponent = () => {
   const firstNameInput = useInput(data.firstName);
   const lastNameInput = useInput(data.lastName);
   const emailInput = useInput(data.email);
+  const navigate = useNavigate();
 
   const handleSubmit = (e: FormEvent) => {
 
@@ -22,8 +23,10 @@ const RouteComponent = () => {
       lastName: lastNameInput.value,
       email: emailInput.value
     })
-  }
-
+    navigate({ to: '/success' })
+  };
+  
+  
   return <>
     <PageHeader>Summary</PageHeader>
     <p>Fill in Your personal data.</p>
