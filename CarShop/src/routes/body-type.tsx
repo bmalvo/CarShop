@@ -4,6 +4,7 @@ import { usePersonalData } from '../store/usePersonalData'
 import { useShallow } from 'zustand/shallow';
 import { useInput } from '../hooks/useInput';
 import { FormEvent } from 'react';
+import { Stepper } from '../components/Stepper';
 
 
 const RouteComponent = () => {
@@ -22,6 +23,7 @@ const RouteComponent = () => {
   };
 
   return <>
+    <Stepper step='body-type'/>
     <PageHeader>Body type</PageHeader>
     <p>Check a body type for Your car</p>
     <form onSubmit={handleSubmit}>

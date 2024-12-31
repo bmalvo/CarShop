@@ -4,6 +4,7 @@ import { useInput } from '../hooks/useInput'
 import { FormEvent } from 'react';
 import { usePersonalData } from '../store/usePersonalData';
 import {useShallow} from 'zustand/shallow'
+import { Stepper } from '../components/Stepper';
 
 
 const RouteComponent = () => {
@@ -26,8 +27,9 @@ const RouteComponent = () => {
     navigate({ to: '/success' })
   };
   
-  
+
   return <>
+    <Stepper step='summary'/>
     <PageHeader>Summary</PageHeader>
     <p>Fill in Your personal data.</p>
     <form onSubmit={handleSubmit}>

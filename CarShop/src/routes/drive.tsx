@@ -5,6 +5,7 @@ import { useShallow } from 'zustand/shallow';
 import { FormEvent } from 'react';
 import { PageHeader } from '../components/PageHeader';
 import { useOrderAccess } from '../hooks/useOrderAccess';
+import { Stepper } from '../components/Stepper';
 
 
 const RouteComponent = () => {
@@ -24,6 +25,7 @@ const RouteComponent = () => {
   }
   
   return <>
+    <Stepper step='drive' />
     <PageHeader>Drive type</PageHeader>
     <p>Which drive would You like to have?</p>
     <form onSubmit={handleSubmit}>
