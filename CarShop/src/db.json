@@ -91,10 +91,11 @@
     ],
     "orders": [
         {
+          "id": "1",
             "firstName": "Jan",
             "lastName": "Kowalski",
             "email": "jankowalski@wp.pl",
-            "value": 1000000,
+            "value": "1000000",
             "details": ["coupe", "drive-AWD", "paint-solid"]
         }
     ]
