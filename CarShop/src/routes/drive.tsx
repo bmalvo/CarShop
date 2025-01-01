@@ -6,6 +6,7 @@ import { useOrderAccess } from '../hooks/useOrderAccess';
 import { Stepper } from '../components/Stepper';
 import { Card, CardContent } from '@mui/material';
 import { useGetCategories } from '../queries/useGetCategories';
+import { GridElement } from '../components/GridElement/GridElement';
 
 interface Part {
   name: string;
@@ -60,9 +61,11 @@ const RouteComponent = () => {
 
         <PageHeader>Drive type</PageHeader>
         <p>Which drive would You like to have?</p>
+        <GridElement>
         <p onClick={handleFetchFWD}> Front-Wheel-Drive</p>
         <p onClick={handleFetch4WD}> Four-Wheel-Drive</p>
         <p onClick={handleFetchAWD}>All-Wheel-Drive</p>
+        </GridElement>
       </CardContent>
     </Card>
   </>

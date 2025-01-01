@@ -3,8 +3,9 @@ import { PageHeader } from '../components/PageHeader'
 import { usePersonalData } from '../store/usePersonalData'
 import { useShallow } from 'zustand/shallow';
 import { Stepper } from '../components/Stepper';
-import { Card, CardContent} from '@mui/material';
+import { Card, CardContent, Grid} from '@mui/material';
 import { useGetCategories } from '../queries/useGetCategories';
+import { GridElement } from '../components/GridElement/GridElement';
 
 interface Part {
   name: string;
@@ -60,9 +61,11 @@ const RouteComponent = () => {
       <CardContent>
         <PageHeader>Body type</PageHeader>
         <p>Check a body type for Your car</p>
+        <GridElement>
         <p onClick={handleFetchHatchback}> Hatchback</p>
         <p onClick={handleFetchCoupe}> Coupe</p>
         <p onClick={handleFetchPickup}>Pickup</p>
+        </GridElement>
       </CardContent>
     </Card>
   </>

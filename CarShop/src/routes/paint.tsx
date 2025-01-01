@@ -5,6 +5,7 @@ import { PageHeader } from '../components/PageHeader';
 import { Stepper } from '../components/Stepper';
 import { Card, CardContent } from '@mui/material';
 import { useGetCategories } from '../queries/useGetCategories';
+import { GridElement } from '../components/GridElement/GridElement';
 
 interface Part {
   name: string;
@@ -57,9 +58,11 @@ const RouteComponent = () => {
       <CardContent>
         <PageHeader>Paint</PageHeader>
         <p>Choose a paint You want see on Your Car.</p>
+        <GridElement>
         <p onClick={handleFetchSolid}> Solid</p>
         <p onClick={handleFetchMetallic}> Metallic</p>
         <p onClick={handleFetchMatte}>Matte</p>
+        </GridElement>
       </CardContent>
     </Card>
   </>
