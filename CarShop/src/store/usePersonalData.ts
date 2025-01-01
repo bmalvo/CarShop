@@ -8,21 +8,17 @@ type PersonalData = {
         lastName: string;
         email: string;
     },
-    bodyType: string,
-    driveType: string,
-    paint: string,
-    // setPersonalData: (payload: setPersonalDataAction) => void;
-    // setBodyType: (payload: string) => void;
-    // setDriveType: (payload: string) => void;
-    // setPaint: (payload: string) => void;
+    bodyType: {name: string, price: string},
+    driveType: {name: string, price: string},
+    paint: {name: string, price: string},
 }
 
 type PersonalDataActions = {
 
     setPersonalData: (payload: setPersonalDataAction) => void;
-    setBodyType: (payload: string) => void;
-    setDriveType: (payload: string) => void;
-    setPaint: (payload: string) => void;
+    setBodyType: (payload: {name: string, price: string}) => void;
+    setDriveType: (payload: {name: string, price: string}) => void;
+    setPaint: (payload: {name: string, price: string}) => void;
     placeOrder: () => void;
 }
 
@@ -39,9 +35,9 @@ const initialState: PersonalData = {
                 lastName: '',
                 email: ''
             },
-            bodyType: '',
-            driveType: '',
-            paint: '',
+            bodyType: {name: '', price: ''},
+            driveType: {name: '', price: ''},
+            paint: {name: '', price: ''},
 }
 
 export const usePersonalData = create<PersonalData & PersonalDataActions>()(
@@ -54,9 +50,9 @@ export const usePersonalData = create<PersonalData & PersonalDataActions>()(
             
                 data: payload
             }),
-            setBodyType: (bodyType: string) => set({bodyType}),
-            setDriveType: (driveType: string) => set({driveType}),
-            setPaint: (paint: string) => set({ paint }),
+            setBodyType: (bodyType: {name: string, price: string}) => set({bodyType}),
+            setDriveType: (driveType: {name: string, price: string}) => set({driveType}),
+            setPaint: (paint: {name: string, price: string}) => set({ paint }),
             placeOrder: () => set(initialState)
         }),
 

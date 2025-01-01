@@ -3,44 +3,65 @@ import { PageHeader } from '../components/PageHeader'
 import { usePersonalData } from '../store/usePersonalData'
 import { useShallow } from 'zustand/shallow';
 import { Stepper } from '../components/Stepper';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { Button, Card, CardContent, InputLabel, MenuItem, Select } from '@mui/material';
+import { Card, CardContent} from '@mui/material';
+import { useGetCategories } from '../queries/useGetCategories';
+
+interface Part {
+  name: string;
+  price: number;
+}
+
+interface Category {
+  parts: Part[];
+}
+
+interface CategoriesResponse {
+  [index: number]: Category;
+}
 
 
 const RouteComponent = () => {
 
   const { setBodyType } = usePersonalData(useShallow(state => ({ bodyType: state.bodyType, setBodyType: state.setBodyType })));
 
-  const { register, handleSubmit } = useForm<{ bodyType: string }>();
-
   const navigate = useNavigate();
   
-  const onSubmit: SubmitHandler<{ bodyType: string }> = (data) => {
-    
-    setBodyType(data.bodyType)
+  const { data } = useGetCategories() as CategoriesResponse;
+
+  const handleFetchHatchback = () => {
+    const bodyPartName = data[0].parts[0].name
+    const bodyPartPrice = data[0].parts[0].price
+    setBodyType({ name: bodyPartName, price: bodyPartPrice })
     navigate({ to: '/drive' })
-  };
+    
+  }
+
+  const handleFetchCoupe = () => {
+    const bodyPartName = data[0].parts[1].name
+    const bodyPartPrice = data[0].parts[1].price
+    setBodyType({ name: bodyPartName, price: bodyPartPrice })
+    navigate({ to: '/drive' })
+    
+  }
+
+  const handleFetchPickup = () => {
+    const bodyPartName = data[0].parts[2].name
+    const bodyPartPrice = data[0].parts[2].price
+    setBodyType({ name: bodyPartName, price: bodyPartPrice })
+    navigate({ to: '/drive' })
+    
+  }
 
 
   return <>
     <Stepper step='body-type' />
     <Card>
       <CardContent>
-
         <PageHeader>Body type</PageHeader>
         <p>Check a body type for Your car</p>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <InputLabel id='body-type'>Body Type</InputLabel>
-          <Select labelId='body-type'  {...register('bodyType', { required: true })}>
-            {/* <MenuItem  value=''>body type</MenuItem> */}
-            {/* <MenuItem ></MenuItem> */}
-            <MenuItem defaultValue={'hatchback'} value="hatchback">hatchback</MenuItem>
-            <MenuItem value="coupe">coupe</MenuItem>
-            <MenuItem value="pickup">pickup</MenuItem>
-          </Select>
-          {/* <Button type='submit'>Choose</Button> */}
-          <Button variant='outlined' type='submit' >submit</Button>
-        </form>
+        <p onClick={handleFetchHatchback}> Hatchback</p>
+        <p onClick={handleFetchCoupe}> Coupe</p>
+        <p onClick={handleFetchPickup}>Pickup</p>
       </CardContent>
     </Card>
   </>

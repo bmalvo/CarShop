@@ -5,19 +5,20 @@ import { useNavigate } from "@tanstack/react-router"
 
 export const useOrderRedirect = () => {
 
-    const { bodyType, driveType} = usePersonalData(useShallow(state => ({ bodyType: state.bodyType, driveType: state.driveType})))
+    const { bodyType, driveType} = usePersonalData(useShallow(state => ({ bodyType: state.bodyType.name, driveType: state.driveType.name})))
 
     const navigate = useNavigate();
     
     const isBodyTypeFilled = () => {
-
-        return bodyType;
+        console.log(bodyType)
+        return bodyType !== '';
     }
-
+    console.log('isBody: ', isBodyTypeFilled())
     const isBodyAndDriveFilled = () => {
 
-        return bodyType && driveType
+        return bodyType !== '' && driveType !== ''
     }
+    console.log('boda and drive: ',isBodyAndDriveFilled())
 
     useEffect(() => {
         if (isBodyAndDriveFilled()) {

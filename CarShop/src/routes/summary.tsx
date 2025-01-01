@@ -31,6 +31,8 @@ const RouteComponent = () => {
     
   };
 
+  const totalPrice = Number(bodyType.price) + Number(driveType.price)
+
 
   return <>
     <Stepper step='summary' />
@@ -54,9 +56,10 @@ const RouteComponent = () => {
       <CardContent>
         
         <PageHeader>This is how Your order look: </PageHeader>
-        <p>Body: {bodyType}</p>
-        <p>Drive: {driveType}</p>
-        <p>Paint: {paint}</p>
+          <p>Body: {bodyType.name} - { bodyType.price}</p>
+          <p>Drive: {driveType.name} - { driveType.price}</p>
+          <p>Paint: {paint.name} - {paint.price}</p>
+          <p>Total price for Your Car: { totalPrice}</p>
       </CardContent>
     </Card>
     </Stack>

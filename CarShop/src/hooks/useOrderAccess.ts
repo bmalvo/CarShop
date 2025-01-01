@@ -11,12 +11,12 @@ export const useOrderAccess = (step: 'body-type' | 'drive' | 'paint' | 'summary'
     
     const isBodyTypeFilled = () => {
 
-        return bodyType;
+        return bodyType.name !== '';
     }
 
     const isBodyDriveFilled = () => {
 
-        return bodyType && driveType
+        return bodyType.name !== '' && driveType.name !== ''
     }
 
     useEffect(() => {

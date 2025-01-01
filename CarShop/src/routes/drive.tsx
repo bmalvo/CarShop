@@ -4,26 +4,53 @@ import { useShallow } from 'zustand/shallow';
 import { PageHeader } from '../components/PageHeader';
 import { useOrderAccess } from '../hooks/useOrderAccess';
 import { Stepper } from '../components/Stepper';
-import { useForm, SubmitHandler } from 'react-hook-form';
 import { Card, CardContent } from '@mui/material';
+import { useGetCategories } from '../queries/useGetCategories';
 
+interface Part {
+  name: string;
+  price: number;
+}
 
+interface Category {
+  parts: Part[];
+}
+
+interface CategoriesResponse {
+  [index: number]: Category;
+}
 
 const RouteComponent = () => {
 
   useOrderAccess('drive');
   const { setDriveType } = usePersonalData(useShallow(state => ({ driveType: state.driveType, setDriveType: state.setDriveType })));
 
-  const { register, handleSubmit } = useForm<{ drive: string }>();
-
-
   const navigate = useNavigate();
-      
-  const onSubmit: SubmitHandler<{ drive: string }> = (data) => {
-      
+
+  const { data } = useGetCategories() as CategoriesResponse;
     
-    setDriveType(data.drive)
+  const handleFetchFWD = () => {
+    const bodyPartName = data[1].parts[0].name
+    const bodyPartPrice = data[1].parts[0].price
+    setDriveType({ name: bodyPartName, price: bodyPartPrice })
     navigate({ to: '/paint' })
+      
+  }
+    
+  const handleFetch4WD = () => {
+    const bodyPartName = data[1].parts[1].name
+    const bodyPartPrice = data[1].parts[1].price
+    setDriveType({ name: bodyPartName, price: bodyPartPrice })
+    navigate({ to: '/paint' })
+      
+  }
+  
+  const handleFetchAWD = () => {
+    const bodyPartName = data[1].parts[2].name
+    const bodyPartPrice = data[1].parts[2].price
+    setDriveType({ name: bodyPartName, price: bodyPartPrice })
+    navigate({ to: '/paint' })
+      
   }
   
   return <>
@@ -33,15 +60,9 @@ const RouteComponent = () => {
 
         <PageHeader>Drive type</PageHeader>
         <p>Which drive would You like to have?</p>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <select  {...register('drive', { required: true })}>
-            <option value="">drive type</option>
-            <option value="Front-Wheel-Drive">Front-Wheel Drive</option>
-            <option value="Four-Wheel-Drive">Four-Wheel Drive</option>
-            <option value="All-Wheel-Drive">All-Wheel Drive</option>
-          </select>
-          <button type='submit'>Choose</button>
-        </form>
+        <p onClick={handleFetchFWD}> Front-Wheel-Drive</p>
+        <p onClick={handleFetch4WD}> Four-Wheel-Drive</p>
+        <p onClick={handleFetchAWD}>All-Wheel-Drive</p>
       </CardContent>
     </Card>
   </>
