@@ -1,49 +1,54 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { PageHeader } from '../components/PageHeader'
-import { useInput } from '../hooks/useInput'
-import { FormEvent } from 'react';
 import { usePersonalData } from '../store/usePersonalData';
 import {useShallow} from 'zustand/shallow'
 import { Stepper } from '../components/Stepper';
+import { SubmitHandler, useForm } from 'react-hook-form';
+
+type onSubmitProps = {
+
+  firstName: string;
+  lastName: string;
+  email: string;
+}
 
 
 const RouteComponent = () => {
   
-  const { data, bodyType, driveType, paint, setPersonalData } = usePersonalData(useShallow(state => ({ data: state.data, setPersonalData: state.setPersonalData, bodyType: state.bodyType, driveType: state.driveType, paint: state.paint })));
-  const firstNameInput = useInput(data.firstName);
-  const lastNameInput = useInput(data.lastName);
-  const emailInput = useInput(data.email);
+  const { bodyType, driveType, paint, setPersonalData } = usePersonalData(useShallow(state => ({ data: state.data, setPersonalData: state.setPersonalData, bodyType: state.bodyType, driveType: state.driveType, paint: state.paint })));
   const navigate = useNavigate();
-
-  const handleSubmit = (e: FormEvent) => {
-
-    e.preventDefault();
-    setPersonalData({
-
-      firstName: firstNameInput.value,
-      lastName: lastNameInput.value,
-      email: emailInput.value
-    })
-    navigate({ to: '/success' })
-  };
+  const { register, handleSubmit, formState: {isValid, errors} } = useForm<onSubmitProps>();
   
+  const onSubmit: SubmitHandler<onSubmitProps> = (data) => {
+    setPersonalData({
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email
+    })
+    
+    navigate({ to: '/success' });
+    
+  };
+
 
   return <>
     <Stepper step='summary'/>
     <PageHeader>Summary</PageHeader>
     <p>Fill in Your personal data.</p>
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <input type="text" name='firstName' placeholder='name' {...firstNameInput} />
+      <input {...register('firstName', { required: true, minLength: 3 })} />
+      {errors.firstName? <p>This field required 3 signs.</p>: null}
       </div>
       <div>
-        <input type="text" name='lastName' placeholder='lastName' {...lastNameInput} />
+      <input {...register('lastName', {required: true})} />
       </div>
       <div>
-        <input type="email" name='email' placeholder='name.lastname@example.com' {...emailInput} />
+      <input {...register('email', {required: true})} />
       </div>
-      <button type='submit' disabled={!firstNameInput.value || !lastNameInput.value || !emailInput.value}>submit</button>
+      <button type='submit' disabled={!isValid}>submit</button>
     </form>
+
     <PageHeader>This is how Your order look: </PageHeader>
     <p>Body: {bodyType}</p>
     <p>Drive: {driveType}</p>

@@ -1,24 +1,23 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { usePersonalData } from '../store/usePersonalData';
 import { useShallow } from 'zustand/shallow';
-import { useInput } from '../hooks/useInput';
-import { FormEvent } from 'react';
 import { PageHeader } from '../components/PageHeader';
 import { Stepper } from '../components/Stepper';
+import { useForm, SubmitHandler } from 'react-hook-form';
+
 
 
 const RouteComponent = () => {
 
-  const { paint, setPaint } = usePersonalData(useShallow(state => ({ paint: state.paint, setPaint: state.setPaint })));
+  const { setPaint } = usePersonalData(useShallow(state => ({ paint: state.paint, setPaint: state.setPaint })));
+
+  const { register, handleSubmit } = useForm<{ paint: string }>();
 
   const navigate = useNavigate();
-      
-  const paintInput = useInput(paint);
-    
-  const handleSubmit = (e: FormEvent) => {
+          
+  const onSubmit : SubmitHandler<{paint: string}> = (data) => {
         
-    e.preventDefault();
-    setPaint(paintInput.value)
+    setPaint(data.paint)
     navigate({ to: '/summary' })
   }
     
@@ -26,8 +25,8 @@ const RouteComponent = () => {
     <Stepper step='paint' />
     <PageHeader>Paint</PageHeader>
     <p>Choose a paint You want see on Your Car.</p>
-    <form onSubmit={handleSubmit}>
-      <select name="paint" {...paintInput}>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <select  {...register('paint', {required: true})}>
         <option value="">paint type</option>
         <option value="solid">solid</option>
         <option value="metallic">metallic</option>

@@ -1,26 +1,27 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
-import { useInput } from '../hooks/useInput';
 import { usePersonalData } from '../store/usePersonalData';
 import { useShallow } from 'zustand/shallow';
-import { FormEvent } from 'react';
 import { PageHeader } from '../components/PageHeader';
 import { useOrderAccess } from '../hooks/useOrderAccess';
 import { Stepper } from '../components/Stepper';
+import { useForm, SubmitHandler } from 'react-hook-form';
+
 
 
 const RouteComponent = () => {
 
   useOrderAccess('drive');
-  const { driveType, setDriveType } = usePersonalData(useShallow(state => ({ driveType: state.driveType, setDriveType: state.setDriveType })));
+  const { setDriveType } = usePersonalData(useShallow(state => ({ driveType: state.driveType, setDriveType: state.setDriveType })));
+
+  const { register, handleSubmit } = useForm<{ drive: string }>();
+
 
   const navigate = useNavigate();
-    
-  const driveTypeInput = useInput(driveType);
-  
-  const handleSubmit = (e: FormEvent) => {
       
-    e.preventDefault();
-    setDriveType(driveTypeInput.value)
+  const onSubmit: SubmitHandler<{drive: string}> = (data) => {
+      
+    
+    setDriveType(data.drive)
     navigate({ to: '/paint'})
   }
   
@@ -28,8 +29,8 @@ const RouteComponent = () => {
     <Stepper step='drive' />
     <PageHeader>Drive type</PageHeader>
     <p>Which drive would You like to have?</p>
-    <form onSubmit={handleSubmit}>
-      <select name="driveType" {...driveTypeInput}>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <select  {...register('drive', {required: true})}>
         <option value="">drive type</option>
         <option value="Front-Wheel-Drive">Front-Wheel Drive</option>
         <option value="Four-Wheel-Drive">Four-Wheel Drive</option>

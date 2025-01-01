@@ -2,23 +2,21 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { PageHeader } from '../components/PageHeader'
 import { usePersonalData } from '../store/usePersonalData'
 import { useShallow } from 'zustand/shallow';
-import { useInput } from '../hooks/useInput';
-import { FormEvent } from 'react';
 import { Stepper } from '../components/Stepper';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
 
 const RouteComponent = () => {
 
-  const { bodyType, setBodyType } = usePersonalData(useShallow(state => ({ bodyType: state.bodyType, setBodyType: state.setBodyType })));
+  const { setBodyType } = usePersonalData(useShallow(state => ({ bodyType: state.bodyType, setBodyType: state.setBodyType })));
+
+  const { register, handleSubmit} = useForm<{bodyType: string}>();
 
   const navigate = useNavigate();
   
-  const bodyTypeInput = useInput(bodyType);
-
-  const handleSubmit = (e: FormEvent) => {
+  const onSubmit: SubmitHandler<{bodyType: string}> = (data) => {
     
-    e.preventDefault();
-    setBodyType(bodyTypeInput.value)
+    setBodyType(data.bodyType)
     navigate({ to: '/drive'})
   };
 
@@ -26,8 +24,8 @@ const RouteComponent = () => {
     <Stepper step='body-type'/>
     <PageHeader>Body type</PageHeader>
     <p>Check a body type for Your car</p>
-    <form onSubmit={handleSubmit}>
-      <select name="bodyType" {...bodyTypeInput}>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <select  {...register('bodyType', {required: true})}>
         <option value="">body type</option>
         <option value="hatchback">hatchback</option>
         <option value="coupe">coupe</option>
