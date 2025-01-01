@@ -2,7 +2,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useApi } from "../hooks/useApi";
 
 type OrderType = {
-    // 'id': string,
     "firstName": string,
     "lastName": string,
     "email": string,

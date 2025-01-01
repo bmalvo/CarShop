@@ -43,9 +43,6 @@ const RouteComponent = () => {
   };
 
 
-  console.log(orderData)
-
-
   return <>
     <Stepper step='summary' />
     <Stack spacing={4}>

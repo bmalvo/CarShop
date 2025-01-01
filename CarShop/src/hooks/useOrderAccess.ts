@@ -5,7 +5,7 @@ import { useNavigate } from "@tanstack/react-router"
 
 export const useOrderAccess = (step: 'body-type' | 'drive' | 'paint' | 'summary' | 'success') => {
 
-    const { bodyType, driveType} = usePersonalData(useShallow(state => ({ bodyType: state.bodyType, driveType: state.driveType })))
+    const { bodyType, driveType } = usePersonalData(useShallow(state => ({ bodyType: state.bodyType, driveType: state.driveType })))
 
     const navigate = useNavigate();
     
@@ -31,8 +31,8 @@ export const useOrderAccess = (step: 'body-type' | 'drive' | 'paint' | 'summary'
                 
             case 'paint': {
                 
-                if(!isBodyDriveFilled()) navigate({ to: '/'})
-                }
+                if (!isBodyDriveFilled()) navigate({ to: '/' })
+            }
         }
     },)
-}
+};

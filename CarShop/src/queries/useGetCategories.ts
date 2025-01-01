@@ -1,12 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useApi } from "../hooks/useApi";
 
-// type BodyType = {
 
-
-// }
-
-export const useGetCategories    = () => {
+export const useGetCategories = () => {
     
     const { apiGet } = useApi();
     

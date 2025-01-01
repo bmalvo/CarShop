@@ -31,9 +31,8 @@ export const useApi = () => {
 
 
         } catch (e) {
-            throw new Error('Error ocurred')
-        } finally {
-        }
+            throw new Error(`Error ocurred: ${e}`)
+        } 
     }
 
     const apiDelete = async <R>(url: string) => {

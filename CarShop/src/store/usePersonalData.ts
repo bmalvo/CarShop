@@ -8,19 +8,19 @@ type PersonalData = {
         lastName: string;
         email: string;
     },
-    bodyType: {name: string, price: string},
-    driveType: {name: string, price: string},
-    paint: {name: string, price: string},
-}
+    bodyType: { name: string, price: string },
+    driveType: { name: string, price: string },
+    paint: { name: string, price: string },
+};
 
 type PersonalDataActions = {
 
     setPersonalData: (payload: setPersonalDataAction) => void;
-    setBodyType: (payload: {name: string, price: string}) => void;
-    setDriveType: (payload: {name: string, price: string}) => void;
-    setPaint: (payload: {name: string, price: string}) => void;
+    setBodyType: (payload: { name: string, price: string }) => void;
+    setDriveType: (payload: { name: string, price: string }) => void;
+    setPaint: (payload: { name: string, price: string }) => void;
     placeOrder: () => void;
-}
+};
 
 type setPersonalDataAction = {
 
@@ -31,14 +31,14 @@ type setPersonalDataAction = {
 
 const initialState: PersonalData = {
     data: {
-                firstName: '',
-                lastName: '',
-                email: ''
-            },
-            bodyType: {name: '', price: ''},
-            driveType: {name: '', price: ''},
-            paint: {name: '', price: ''},
-}
+        firstName: '',
+        lastName: '',
+        email: ''
+    },
+    bodyType: { name: '', price: '' },
+    driveType: { name: '', price: '' },
+    paint: { name: '', price: '' },
+};
 
 export const usePersonalData = create<PersonalData & PersonalDataActions>()(
     persist(

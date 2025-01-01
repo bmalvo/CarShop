@@ -3,7 +3,7 @@ import { usePersonalData } from '../store/usePersonalData';
 import { useShallow } from 'zustand/shallow';
 import { PageHeader } from '../components/PageHeader';
 import { Stepper } from '../components/Stepper';
-import { Card, CardContent, CardHeader, CardMedia } from '@mui/material';
+import { Card, CardContent} from '@mui/material';
 import { useGetCategories } from '../queries/useGetCategories';
 import { GridElement } from '../components/GridElement/GridElement';
 
