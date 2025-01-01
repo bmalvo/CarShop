@@ -3,7 +3,7 @@ import { usePersonalData } from '../store/usePersonalData';
 import { useShallow } from 'zustand/shallow';
 import { PageHeader } from '../components/PageHeader';
 import { Stepper } from '../components/Stepper';
-import { Card, CardContent } from '@mui/material';
+import { Card, CardContent, CardHeader, CardMedia } from '@mui/material';
 import { useGetCategories } from '../queries/useGetCategories';
 import { GridElement } from '../components/GridElement/GridElement';
 
@@ -57,11 +57,26 @@ const RouteComponent = () => {
     <Card>
       <CardContent>
         <PageHeader>Paint</PageHeader>
-        <p>Choose a paint You want see on Your Car.</p>
+        <p>Choose a paint You want see on Your Car.</p><br /><br />
         <GridElement>
-        <p onClick={handleFetchSolid}> Solid</p>
-        <p onClick={handleFetchMetallic}> Metallic</p>
-        <p onClick={handleFetchMatte}>Matte</p>
+          <Card>
+            <CardContent>
+              <PageHeader>Solid</PageHeader>
+              <img src='https://i.imageupload.app/015244468ba07746e1a9.jpeg' onClick={handleFetchSolid} />
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent>
+              <PageHeader>Metallic</PageHeader>
+          <img src='https://i.imageupload.app/2c5d0c9878cbb6d23ebe.jpeg' onClick={handleFetchMetallic} />
+</CardContent>
+          </Card>
+          <Card>
+            <CardContent>
+      <PageHeader>Matte</PageHeader>
+          <img src='https://i.imageupload.app/0cd4e8304a855b9fae65.jpeg' onClick={handleFetchMatte} />
+            </CardContent>
+          </Card>
         </GridElement>
       </CardContent>
     </Card>

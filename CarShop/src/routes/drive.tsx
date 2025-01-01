@@ -60,11 +60,27 @@ const RouteComponent = () => {
       <CardContent>
 
         <PageHeader>Drive type</PageHeader>
-        <p>Which drive would You like to have?</p>
+        <p>Which drive would You like to have?</p><br /><br />
         <GridElement>
-        <p onClick={handleFetchFWD}> Front-Wheel-Drive</p>
-        <p onClick={handleFetch4WD}> Four-Wheel-Drive</p>
-        <p onClick={handleFetchAWD}>All-Wheel-Drive</p>
+          <Card>
+            <CardContent>
+              <PageHeader>FWD</PageHeader>
+        <img src='https://i.imageupload.app/9be0fe974bea143d2cf3.jpeg' onClick={handleFetchFWD} />
+</CardContent>
+          </Card>
+          <Card>
+            <CardContent>
+              <PageHeader>4WD</PageHeader>
+        <img src='https://i.imageupload.app/8370ed76bcf3d94d4116.jpeg' onClick={handleFetch4WD} />
+</CardContent>
+          </Card>
+          <Card>
+            <CardContent>
+              <PageHeader>AWD</PageHeader>
+          <img src='https://i.imageupload.app/00e5ffda34d58aee2a99.jpeg' onClick={handleFetchAWD} id='awd' />
+</CardContent>
+          </Card>
+          {/* <label htmlFor="awd">AWD</label> */}
         </GridElement>
       </CardContent>
     </Card>

@@ -5,3 +5,16 @@
     box-sizing: border-box;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
+img {
+
+    width: 250px;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+
+        // border:1px solid red;
+        transform: scale(1.1);
+    }
+}

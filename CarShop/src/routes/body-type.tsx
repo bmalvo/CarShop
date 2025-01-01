@@ -60,11 +60,28 @@ const RouteComponent = () => {
     <Card>
       <CardContent>
         <PageHeader>Body type</PageHeader>
-        <p>Check a body type for Your car</p>
+        <p>Check a body type for Your car</p><br /><br />
         <GridElement>
-        <p onClick={handleFetchHatchback}> Hatchback</p>
-        <p onClick={handleFetchCoupe}> Coupe</p>
-        <p onClick={handleFetchPickup}>Pickup</p>
+          <Card>
+            <CardContent>
+              <PageHeader>Hatchback</PageHeader>
+        <img src='https://i.imageupload.app/034ea4f16609262c7616.jpeg' onClick={handleFetchHatchback} />
+</CardContent>
+          </Card>
+          <Card>
+            <CardContent>
+              <PageHeader>
+                Coupe
+              </PageHeader>
+        <img src='https://i.imageupload.app/eb5230609901697addf1.jpeg' onClick={handleFetchCoupe} /> 
+</CardContent>
+          </Card>
+          <Card>
+            <CardContent>
+              <PageHeader>Pickup</PageHeader>
+        <img src='https://i.imageupload.app/772fecec86abcee3a7ac.jpeg' onClick={handleFetchPickup} />
+</CardContent>
+          </Card>
         </GridElement>
       </CardContent>
     </Card>
