@@ -11,12 +11,12 @@ export const useOrderRedirect = () => {
     
     const isBodyTypeFilled = () => {
         console.log(bodyType)
-        return bodyType !== '';
+        return bodyType.length > 0;
     }
     console.log('isBody: ', isBodyTypeFilled())
     const isBodyAndDriveFilled = () => {
 
-        return bodyType !== '' && driveType !== ''
+        return bodyType.length> 0 && driveType.length > 0
     }
     console.log('boda and drive: ',isBodyAndDriveFilled())
 

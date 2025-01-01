@@ -5,6 +5,7 @@ import {useShallow} from 'zustand/shallow'
 import { Stepper } from '../components/Stepper';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Button, Card, CardContent, Stack, TextField } from '@mui/material';
+import { useCreateOrderMutation } from '../queries/useCreateOrderMutation';
 
 type onSubmitProps = {
 
@@ -16,9 +17,12 @@ type onSubmitProps = {
 
 const RouteComponent = () => {
   
-  const { bodyType, driveType, paint, setPersonalData } = usePersonalData(useShallow(state => ({ data: state.data, setPersonalData: state.setPersonalData, bodyType: state.bodyType, driveType: state.driveType, paint: state.paint })));
+  const {mutate} = useCreateOrderMutation();
+  const { bodyType, driveType, paint, setPersonalData, data: orderData } = usePersonalData(useShallow(state => ({ data: state.data, setPersonalData: state.setPersonalData, bodyType: state.bodyType, driveType: state.driveType, paint: state.paint })));
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { isValid, errors } } = useForm<onSubmitProps>();
+  const totalPrice = Number(bodyType.price) + Number(driveType.price) + Number(paint.price)
+  const details = [bodyType.name, driveType.name, paint.name]
   
   const onSubmit: SubmitHandler<onSubmitProps> = (data) => {
     setPersonalData({
@@ -27,11 +31,19 @@ const RouteComponent = () => {
       email: data.email
     })
     
+    mutate({
+      "firstName": data.firstName,
+      "lastName": data.lastName,
+      "email": data.email,
+      "value": String(totalPrice),
+      "details": details
+    })
     navigate({ to: '/success' });
     
   };
 
-  const totalPrice = Number(bodyType.price) + Number(driveType.price)
+
+  console.log(orderData)
 
 
   return <>

@@ -48,6 +48,7 @@ const RouteComponent = () => {
     const bodyPartName = data[0].parts[2].name
     const bodyPartPrice = data[0].parts[2].price
     setBodyType({ name: bodyPartName, price: bodyPartPrice })
+    
     navigate({ to: '/drive' })
     
   }
