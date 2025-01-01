@@ -1,11 +1,16 @@
 import style from './style.module.scss'
+// import Step from '@mui/material/Step';
+// import StepLabel from '@mui/material/StepLabel';
+
 
 type StepperProps = {
 
     step: 'body-type' | 'drive' | 'paint' | 'summary';
 }
 
-export const Stepper = ({step}: StepperProps) => {
+export const Stepper = ({ step }: StepperProps) => {
+    
+    // const steps = ['body-type', 'drive', 'paint', 'summary']
 
     return <>
         <div className={style.stepper}>

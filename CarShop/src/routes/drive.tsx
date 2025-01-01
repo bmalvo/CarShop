@@ -5,6 +5,7 @@ import { PageHeader } from '../components/PageHeader';
 import { useOrderAccess } from '../hooks/useOrderAccess';
 import { Stepper } from '../components/Stepper';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { Card, CardContent } from '@mui/material';
 
 
 
@@ -18,26 +19,31 @@ const RouteComponent = () => {
 
   const navigate = useNavigate();
       
-  const onSubmit: SubmitHandler<{drive: string}> = (data) => {
+  const onSubmit: SubmitHandler<{ drive: string }> = (data) => {
       
     
     setDriveType(data.drive)
-    navigate({ to: '/paint'})
+    navigate({ to: '/paint' })
   }
   
   return <>
     <Stepper step='drive' />
-    <PageHeader>Drive type</PageHeader>
-    <p>Which drive would You like to have?</p>
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <select  {...register('drive', {required: true})}>
-        <option value="">drive type</option>
-        <option value="Front-Wheel-Drive">Front-Wheel Drive</option>
-        <option value="Four-Wheel-Drive">Four-Wheel Drive</option>
-        <option value="All-Wheel-Drive">All-Wheel Drive</option>
-      </select>
-      <button type='submit'>Choose</button>
-    </form>
+    <Card>
+      <CardContent>
+
+        <PageHeader>Drive type</PageHeader>
+        <p>Which drive would You like to have?</p>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <select  {...register('drive', { required: true })}>
+            <option value="">drive type</option>
+            <option value="Front-Wheel-Drive">Front-Wheel Drive</option>
+            <option value="Four-Wheel-Drive">Four-Wheel Drive</option>
+            <option value="All-Wheel-Drive">All-Wheel Drive</option>
+          </select>
+          <button type='submit'>Choose</button>
+        </form>
+      </CardContent>
+    </Card>
   </>
 };
 

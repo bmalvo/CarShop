@@ -4,6 +4,7 @@ import { usePersonalData } from '../store/usePersonalData';
 import {useShallow} from 'zustand/shallow'
 import { Stepper } from '../components/Stepper';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { Button, Card, CardContent, Stack, TextField } from '@mui/material';
 
 type onSubmitProps = {
 
@@ -17,7 +18,7 @@ const RouteComponent = () => {
   
   const { bodyType, driveType, paint, setPersonalData } = usePersonalData(useShallow(state => ({ data: state.data, setPersonalData: state.setPersonalData, bodyType: state.bodyType, driveType: state.driveType, paint: state.paint })));
   const navigate = useNavigate();
-  const { register, handleSubmit, formState: {isValid, errors} } = useForm<onSubmitProps>();
+  const { register, handleSubmit, formState: { isValid, errors } } = useForm<onSubmitProps>();
   
   const onSubmit: SubmitHandler<onSubmitProps> = (data) => {
     setPersonalData({
@@ -32,27 +33,33 @@ const RouteComponent = () => {
 
 
   return <>
-    <Stepper step='summary'/>
-    <PageHeader>Summary</PageHeader>
-    <p>Fill in Your personal data.</p>
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-      <input {...register('firstName', { required: true, minLength: 3 })} />
-      {errors.firstName? <p>This field required 3 signs.</p>: null}
-      </div>
-      <div>
-      <input {...register('lastName', {required: true})} />
-      </div>
-      <div>
-      <input {...register('email', {required: true})} />
-      </div>
-      <button type='submit' disabled={!isValid}>submit</button>
-    </form>
+    <Stepper step='summary' />
+    <Stack spacing={4}>
 
-    <PageHeader>This is how Your order look: </PageHeader>
-    <p>Body: {bodyType}</p>
-    <p>Drive: {driveType}</p>
-    <p>Paint: {paint}</p>
+    <Card >
+      <CardContent>
+        
+        <PageHeader>Summary</PageHeader>
+        <p>Fill in Your personal data.</p>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <TextField label='name' {...register('firstName', { required: true, minLength: 3 })} />
+          {errors.firstName ? <p>This field required 3 signs.</p> : null}
+          <TextField label='lastName' {...register('lastName', { required: true })} />
+          <TextField label='email' {...register('email', { required: true })} />
+          <Button variant='outlined' type='submit' disabled={!isValid}>submit</Button>
+        </form>
+      </CardContent>
+    </Card>
+    <Card>
+      <CardContent>
+        
+        <PageHeader>This is how Your order look: </PageHeader>
+        <p>Body: {bodyType}</p>
+        <p>Drive: {driveType}</p>
+        <p>Paint: {paint}</p>
+      </CardContent>
+    </Card>
+    </Stack>
   </>
 };
 

@@ -15,6 +15,7 @@
     "@mui/material": "^6.3.0",
     "@tanstack/react-router": "^1.92.11",
     "@tanstack/router-plugin": "^1.92.11",
+    "json-server": "^1.0.0-beta.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.54.2",
